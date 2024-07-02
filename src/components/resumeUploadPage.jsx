@@ -113,52 +113,54 @@ const ResumeUploadPage = () => {
   const [state, setState] = useState('');
 
   useEffect(() => {
+    // Fetch existing personal details if available
     const fetchPersonalDetails = async () => {
-      const response = await fetch('http://localhost:5001/resume-uploaded', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include'
-      });
+        const response = await fetch('http://localhost:5001/resume-uploaded', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            credentials: 'include' // Ensure cookies are sent with the request
+        });
 
-      const data = await response.json();
-      if (response.ok && data) {
-        setName(data.name || '');
-        setEmail(data.email || '');
-        setPhoneType(data.phoneType || '');
-        setPhone(data.phone || '');
-        setCity(data.city || '');
-        setStreetAddress(data.streetAddress || '');
-        setZipcode(data.zipcode || '');
-        setState(data.state || '');
-      }
+        const data = await response.json();
+        if (response.ok && data) {
+            setName(data.name || '');
+            setEmail(data.email || '');
+            setPhoneType(data.phoneType || '');
+            setPhone(data.phone || '');
+            setCity(data.city || '');
+            setStreetAddress(data.streetAddress || '');
+            setZipcode(data.zipcode || '');
+            setState(data.state || '');
+        }
     };
 
     fetchPersonalDetails();
-  }, []);
+}, []);
 
-  const handleSubmit = async (e) => {
+const handleSubmit = async (e) => {
     e.preventDefault();
 
     const response = await fetch('http://localhost:5001/resume-uploaded', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ name, email, phoneType, phone, city, streetAddress, zipcode, state }),
-      credentials: 'include'
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ name, email, phoneType, phone, city, streetAddress, zipcode, state }),
+        credentials: 'include' // Ensure cookies are sent with the request
     });
 
     const data = await response.json();
     if (response.ok) {
-      console.log('Personal information submitted successfully', data);
-      navigate('/resume-uploaded/applications');
-      alert('Personal Information Submitted Successfully');
+        console.log('Personal information submitted successfully', data);
+        navigate('/resume-uploaded/applications'); // Redirect to ApplicationsPage
+        alert('Personal Information Submitted Successfully');
     } else {
-      alert(data.message);
+        alert(data.message);
     }
-  };
+};
+
 
   const handleProfileClick = (e) => {
     e.preventDefault();
