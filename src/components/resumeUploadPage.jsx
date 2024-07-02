@@ -11,8 +11,9 @@ const inputStyles = {
     boxSizing: 'border-box',
     borderRadius: '20px',
     backgroundColor: '#e7f0fe',
-    color: '#000000',
+    color: '#000000', // Changed text color to black
     fontSize: '16px',
+    // fontFamily: 'Roboto',
     lineHeight: '40px',
     outline: 'none',
     marginBottom: '15px',
@@ -20,15 +21,17 @@ const inputStyles = {
   },
 };
 
-const InputField = ({ type, text, onChange, value }) => (
-  <input
-    style={inputStyles.Input}
-    placeholder={text}
-    type={type}
-    onChange={onChange}
-    value={value}
-  />
-);
+const InputField = ({ type, text, onChange, value }) => {
+  return (
+    <input
+      style={inputStyles.Input}
+      placeholder={text}
+      type={type}
+      onChange={onChange}
+      value={value}
+    />
+  );
+};
 
 const buttonStyles = {
   Button: {
@@ -42,18 +45,21 @@ const buttonStyles = {
     backgroundColor: '#0675e1',
     color: '#ffffff',
     fontSize: '20px',
+    // fontFamily: 'Roboto',
     fontWeight: 700,
     lineHeight: '31px',
     outline: 'none',
-    marginTop: '20px'
+    marginTop: '20px' // Added margin-top for spacing
   },
 };
 
-const Button = (props) => (
-  <button style={buttonStyles.Button} type="submit">
-    {props.label}
-  </button>
-);
+const Button = (props) => {
+  return (
+    <button style={buttonStyles.Button} type="submit">
+      {props.label}
+    </button>
+  );
+};
 
 const imageStyles = {
   ImageContainer: {
@@ -66,9 +72,14 @@ const imageStyles = {
   },
 };
 
-const Image = ({ image }) => (
-  <div style={{ ...imageStyles.ImageContainer, backgroundImage: `url(${image})` }} />
-);
+const Image = ({ image }) => {
+  return (
+    <div style={{
+      ...imageStyles.ImageContainer,
+      backgroundImage: `url(${image})`,
+    }} />
+  );
+};
 
 const headerImageStyles = {
   ImageContainer: {
@@ -81,25 +92,33 @@ const headerImageStyles = {
   },
 };
 
-const HeaderImage = ({ image }) => (
-  <div style={{ ...headerImageStyles.ImageContainer, backgroundImage: `url(${image})` }} />
-);
+const HeaderImage = ({ image }) => {
+  return (
+    <div style={{
+      ...headerImageStyles.ImageContainer,
+      backgroundImage: `url(${image})`,
+    }} />
+  );
+};
 
 const textStyles = {
   Text: {
     color: '#666666',
     fontSize: '28px',
+    // fontFamily: 'Roboto',
     fontWeight: 700,
     lineHeight: '39px',
     margin: '20px auto'
   },
 };
 
-const Text = ({ text }) => (
-  <div style={textStyles.Text}>
-    {text}
-  </div>
-);
+const Text = ({ text }) => {
+  return (
+    <div style={textStyles.Text}>
+      {text}
+    </div>
+  );
+};
 
 const ResumeUploadPage = () => {
   const navigate = useNavigate();
@@ -140,31 +159,31 @@ const ResumeUploadPage = () => {
 }, []);
 
 const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    const response = await fetch('http://localhost:5001/resume-uploaded', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, phoneType, phone, city, streetAddress, zipcode, state }),
-        credentials: 'include' // Ensure cookies are sent with the request
-    });
+  const response = await fetch('http://localhost:5001/resume-uploaded', {
+      method: 'POST',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ name, email, phoneType, phone, city, streetAddress, zipcode, state }),
+      credentials: 'include' // Ensure cookies are sent with the request
+  });
 
-    const data = await response.json();
-    if (response.ok) {
-        console.log('Personal information submitted successfully', data);
-        navigate('/resume-uploaded/applications'); // Redirect to ApplicationsPage
-        alert('Personal Information Submitted Successfully');
-    } else {
-        alert(data.message);
-    }
+  const data = await response.json();
+  if (response.ok) {
+      console.log('Personal information submitted successfully', data);
+      navigate('/resume-uploaded/applications'); // Redirect to ApplicationsPage
+      alert('Personal Information Submitted Successfully');
+  } else {
+      alert(data.message);
+  }
 };
 
 
   const handleProfileClick = (e) => {
     e.preventDefault();
-    navigate('/resume-uploaded/applications');
+    navigate('/resume-uploaded/applications'); // Redirect to ApplicationsPage
   };
 
   return (
@@ -183,7 +202,7 @@ const handleSubmit = async (e) => {
           boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
         }}>
           <h2>Upload Resume</h2>
-          {name && <Text text={name} />}
+          {name && <Text text={name} />} {/* Display fetched name below the label */}
           <form className="resume-upload-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name</label>
