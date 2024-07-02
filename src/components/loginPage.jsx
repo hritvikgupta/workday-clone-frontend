@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Header from './Header';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const inputStyles = {
   Input: {
@@ -197,7 +197,7 @@ const LoginPage = () => {
             <Button label="Sign In" />
           </form>
           <div className="login-footer">
-            <p>Don't have an account yet? <a href="/signup">Create Account</a></p>
+            <p>Don't have an account yet? <Link to="/signup">Create Account</Link></p>
             <p><a href="/forgot-password">Forgot your password?</a></p>
           </div>
         </div>
