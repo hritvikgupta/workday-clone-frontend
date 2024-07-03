@@ -206,7 +206,8 @@ const SignupPage = () => {
             <Button label="Sign Up" />
           </form>
           <div className="signup-footer">
-            <p>Already have an account? <Link href="/login">Login</Link></p>
+          <p>Already have an account? <Link to="/login">Login</Link></p>
+
           </div>
         </div>
       </div>
