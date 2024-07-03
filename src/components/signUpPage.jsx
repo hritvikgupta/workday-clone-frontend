@@ -132,7 +132,7 @@ const SignupPage = () => {
       return;
     }
 
-    const response = await fetch('http://localhost:5001/api/signup', {
+    const response = await fetch('https://workday-clone-backend.onrender.com/api/signup', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -206,7 +206,7 @@ const SignupPage = () => {
             <Button label="Sign Up" />
           </form>
           <div className="signup-footer">
-            <p>Already have an account? <a href="/login">Login</a></p>
+            <p>Already have an account? <Link href="/login">Login</Link></p>
           </div>
         </div>
       </div>

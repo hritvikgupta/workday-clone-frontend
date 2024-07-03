@@ -343,7 +343,7 @@ const LoginPage = () => {
 
     const response = await fetch('https://workday-clone-backend.onrender.com/api/login', {
       method: 'POST',
-      headers: {
+      headers: { 
         'Content-Type': 'application/json',
       },
       credentials: 'include', // Ensure cookies are included
