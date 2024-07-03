@@ -8,6 +8,7 @@ import ApplicationsPage from './components/ApplicationPage';
 function App() {
   return (
     <Router basename='/workday-clone-frontend'>
+    {/* // <Router> */}
       <div className="App">
         <Routes>
           <Route path="/" element={<Navigate to="/login" />} />

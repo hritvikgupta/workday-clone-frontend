@@ -28,7 +28,7 @@ const ApplicationsPage = () => {
   useEffect(() => {
     const fetchApplications = async () => {
       try {
-        const response = await fetch('http://localhost:5001/resume-uploaded/applications', {
+        const response = await fetch('https://workday-clone-backend.onrender.com/resume-uploaded/applications', {
           credentials: 'include'
         });
         const data = await response.json();

@@ -134,7 +134,7 @@ const ResumeUploadPage = () => {
   useEffect(() => {
     // Fetch existing personal details if available
     const fetchPersonalDetails = async () => {
-        const response = await fetch('http://localhost:5001/resume-uploaded', {
+        const response = await fetch('https://workday-clone-backend.onrender.com/resume-uploaded', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -161,7 +161,7 @@ const ResumeUploadPage = () => {
 const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const response = await fetch('http://localhost:5001/resume-uploaded', {
+  const response = await fetch('https://workday-clone-backend.onrender.com/resume-uploaded', {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',
